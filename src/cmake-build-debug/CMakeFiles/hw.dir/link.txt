@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\hw.dir/objects.a
+C:\PROGRA~2\Dev-Cpp\MinGW64\bin\ar.exe cr CMakeFiles\hw.dir/objects.a @CMakeFiles\hw.dir\objects1.rsp
+C:\PROGRA~2\Dev-Cpp\MinGW64\bin\G__~1.EXE -g   -Wl,--whole-archive CMakeFiles\hw.dir/objects.a -Wl,--no-whole-archive  -o hw.exe -Wl,--out-implib,libhw.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\hw.dir\linklibs.rsp
