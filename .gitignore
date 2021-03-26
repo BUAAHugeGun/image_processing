@@ -1,2 +1,2 @@
-src/.idea
-src/cmake-build-debug
+.idea
+cmake-build-debug

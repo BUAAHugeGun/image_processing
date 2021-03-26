@@ -8,36 +8,24 @@ void IO::read_file(std::string &file_name) {
     this->file_size = ftell(fp);
 
     rewind(fp);
-    buffer = new char[this->file_size + 10];
-    std::fread(buffer, 1, this->file_size);
+    buffer = new unsigned char[this->file_size + 10];
+    std::fread(buffer, 1, this->file_size, fp);
     fclose(fp);
 
     buffer_tmp = buffer;
-}
-
-const char *IO::get_buffer() {
-    return this->buffer;
 }
 
 uint32_t IO::get_file_size() {
     return this->file_size;
 }
 
-char IO::next_char() {
-    if (buffer == buffer_tmp) {
+uint32_t IO::next_uint(uint32_t length) {
+    if (buffer + file_size < buffer_tmp + length - 1) {
         printf("Buffer overflow!\n");
-        exit(-1);
-    }
-    return *(buffer_tmp++);
-}
-
-uint32_t IO::next_uint32() {
-    if (buffer < buffer_tmp + 3) {
-        printf("Buffer overflow!\n");
-        exit(-1);
+        assert(0);
     }
     uint32_t ret = 0;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < length; i++) {
         ret |= ((uint32_t) (*(buffer_tmp++))) << (i << 3);
     }
     return ret;
