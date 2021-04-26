@@ -13,11 +13,23 @@ public:
         delete buffer;
     }
 
-    void read_file(std::string &file_name);
+    void alloc(uint32_t height, uint32_t width);
 
-    uint32_t get_file_size();
+    void alloc(uint32_t size);
+
+    void read_file(std::string &file_name_);
+
+    void write_file(std::string &file_name_);
+
+    uint32_t get_file_size() const;
+
+    void set_file_size(uint32_t size);
 
     uint32_t next_uint(uint32_t length);
+
+    void set_uint(uint32_t x, uint32_t length);
+
+
 };
 
 
