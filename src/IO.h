@@ -5,13 +5,17 @@
 
 class IO {
     std::string file_name;
-    uint32_t file_size;
-    unsigned char *buffer_tmp;
+    uint32_t file_size = 0;
+    unsigned char *buffer_tmp = nullptr;
     unsigned char *buffer = nullptr;
 public:
-    ~IO() {
-        delete buffer;
-    }
+    IO() = default;
+
+    IO(const IO &rhs);
+
+    IO &operator=(IO rhs);
+
+    static void swap(IO &a, IO &b);
 
     void alloc(uint32_t height, uint32_t width);
 
@@ -28,6 +32,10 @@ public:
     uint32_t next_uint(uint32_t length);
 
     void set_uint(uint32_t x, uint32_t length);
+
+    ~IO() {
+        delete buffer;
+    }
 
 
 };

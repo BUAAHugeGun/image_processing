@@ -1,5 +1,27 @@
 #include "IO.h"
 
+IO::IO(const IO &rhs) {
+    this->file_name = rhs.file_name;
+    this->file_size = rhs.file_size;
+    if (this->buffer != nullptr) {
+        delete this->buffer;
+    }
+    this->alloc(rhs.file_size);
+    std::memcpy(this->buffer, rhs.buffer, rhs.file_size + 1);
+}
+
+IO &IO::operator=(IO rhs) {
+    IO::swap(*this, rhs);
+    return *this;
+}
+
+void IO::swap(IO &a, IO &b) {
+    std::swap(a.file_name, b.file_name);
+    std::swap(a.file_size, b.file_size);
+    std::swap(a.buffer, b.buffer);
+    std::swap(a.buffer_tmp, b.buffer_tmp);
+}
+
 void IO::alloc(uint32_t height, uint32_t width) {
     uint32_t head_length = 54;
     uint32_t data_length = height * ((width * 3 - 1) / 4 + 1) * 4;
