@@ -1,0 +1,1 @@
+g++ FFT.cpp IO.cpp frame.cpp main.cpp -o src -O2 -fopenmp -std=c++11

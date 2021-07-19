@@ -1,31 +1,31 @@
-#include <iostream>
-#include "frame.h"
-#include "IO.h"
+# 图像处理课大作业
+17373175 郑耀彦
 
-double roberts1[3][3] = {{-1, 0, 0},
-                         {0,  1, 0},
-                         {0,  0, 0}};
-double roberts2[3][3] = {{0, -1, 0},
-                         {1, 0,  0},
-                         {0, 0,  0}};
-double prewitt1[3][3] = {{-1, 0, 1},
-                         {-1, 0, 1},
-                         {-1, 0, 1}};
-double prewitt2[3][3] = {{-1, 0, 1},
-                         {-1, 0, 1},
-                         {-1, 0, 1}};
-double sobel1[3][3] = {{-1, 0, 1},
-                       {-2, 0, 2},
-                       {-1, 0, 1}};
-double sobel2[3][3] = {{-1, -2, -1},
-                       {0,  0,  0},
-                       {1,  2,  1}};
-double laplacian[3][3] = {{-1, -1, -1},
-                          {-1, 8,  -1},
-                          {-1, -1, -1}};
+## 编译
+windows直接运行`make.bat`:
+```
+.\make.bat
+```
+其他环境下需要g++：
+```
+g++ FFT.cpp IO.cpp frame.cpp main.cpp -o src -O2 -fopenmp -std=c++11
+```
 
-int main() {
-    std::srand(time(0));
+## 运行
+运行编译的可执行文件`src(.exe)`
+
+## 代码介绍
+### FFT.cpp:
+支持对二维数组进行FFT和IFFT
+### IO.cpp:
+支持对文件进行二进制写入、读取
+### frame.cpp:
+图像类，支持作业要求的各种要求
+### main.cpp：
+执行各种作业要求
+下面是`main()`函数的代码和注释
+```c++
+std::srand(time(0));
     //读图
     frame A, B, C, D;
     std::string file_name = "A.bmp";
@@ -129,36 +129,5 @@ int main() {
     (A.conv(prewitt1, 3) + A.conv(prewitt2, 3)).write_bmp(file_name);
     file_name = "A_laplacian.bmp";
     (A.conv(laplacian, 3)).write_bmp(file_name);
-
-//    frame ll, bq;
-//    ll.read_bmp(file_name);
-//    file_name = "..\\..\\bq.bmp";
-//    bq.read_bmp(file_name);
-//    frame f = bq.translation(3,1000) + ll;
-//    frame f = ll.rotate(20);
-//    frame f = ll.flip(1).rotate(180);
-//    frame f=ll.scale(5,2);
-//    frame f = ll.reverse();
-//    frame f = ll.he();
-
-//    frame f=ll.image_fft();
-//    f=f.image_ifft();
-
-//    frame ff=ll;
-//    std::string output_name = "..\\..\\out.raw";
-//    ff.write_raw(output_name);
-//    frame f;
-//    f.read_raw(output_name);
-
-//    frame f = ll.conv(roberts1, 2) - ll.conv(roberts2, 2);
-//    frame f = ll.conv(sobel1, 3) - ll.conv(sobel2, 3);
-//    frame f = ll.conv(prewitt1, 3) - ll.conv(prewitt2, 3);
-//    frame f = ll.conv(laplacian, 3);
-
-//
-//    frame f = frame::FD(x, y, 1);
-//    std::string output_name = "..\\..\\out.bmp";
-//    f.write_bmp(output_name);
-    system("pause");
-    return 0;
-}
+```
+###
